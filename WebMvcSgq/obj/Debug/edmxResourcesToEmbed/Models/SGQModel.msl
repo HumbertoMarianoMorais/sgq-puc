@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="db_sgqModelStoreContainer" CdmEntityContainer="db_sgqEntities">
+    <EntitySetMapping Name="tbl_Processo">
+      <EntityTypeMapping TypeName="db_sgqModel.tbl_Processo">
+        <MappingFragment StoreEntitySet="tbl_Processo">
+          <ScalarProperty Name="Dt_Alteracao" ColumnName="Dt_Alteracao" />
+          <ScalarProperty Name="IdProcesso" ColumnName="IdProcesso" />
+          <ScalarProperty Name="Nome" ColumnName="Nome" />
+          <ScalarProperty Name="Dt_Cadastro" ColumnName="Dt_Cadastro" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Atividade_Diaria">
+      <EntityTypeMapping TypeName="db_sgqModel.Tbl_Atividade_Diaria">
+        <MappingFragment StoreEntitySet="Tbl_Atividade_Diaria">
+          <ScalarProperty Name="Dt_Alteracao" ColumnName="Dt_Alteracao" />
+          <ScalarProperty Name="Dt_Cadastro" ColumnName="Dt_Cadastro" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="IdProcesso" ColumnName="IdProcesso" />
+          <ScalarProperty Name="IdAtividade" ColumnName="IdAtividade" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_atividades">
+      <EntityTypeMapping TypeName="db_sgqModel.tbl_atividades">
+        <MappingFragment StoreEntitySet="tbl_atividades">
+          <ScalarProperty Name="IdEtapa" ColumnName="IdEtapa" />
+          <ScalarProperty Name="IdAtividadeDiaria" ColumnName="IdAtividadeDiaria" />
+          <ScalarProperty Name="IdAtividade" ColumnName="IdAtividade" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_etapa">
+      <EntityTypeMapping TypeName="db_sgqModel.tbl_etapa">
+        <MappingFragment StoreEntitySet="tbl_etapa">
+          <ScalarProperty Name="Dt_Alteração" ColumnName="Dt_Alteração" />
+          <ScalarProperty Name="Dt_Cadastro" ColumnName="Dt_Cadastro" />
+          <ScalarProperty Name="Complemento" ColumnName="Complemento" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="IdProcesso" ColumnName="IdProcesso" />
+          <ScalarProperty Name="IdEtapa" ColumnName="IdEtapa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_funcao">
+      <EntityTypeMapping TypeName="db_sgqModel.tbl_funcao">
+        <MappingFragment StoreEntitySet="tbl_funcao">
+          <ScalarProperty Name="DsFuncao" ColumnName="DsFuncao" />
+          <ScalarProperty Name="IdFuncao" ColumnName="IdFuncao" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Funcionario">
+      <EntityTypeMapping TypeName="db_sgqModel.tbl_Funcionario">
+        <MappingFragment StoreEntitySet="tbl_Funcionario">
+          <ScalarProperty Name="Dt_Alteracao" ColumnName="Dt_Alteracao" />
+          <ScalarProperty Name="Dt_Cadastro" ColumnName="Dt_Cadastro" />
+          <ScalarProperty Name="DsSenha" ColumnName="DsSenha" />
+          <ScalarProperty Name="DsUsuario" ColumnName="DsUsuario" />
+          <ScalarProperty Name="DsFuncionario" ColumnName="DsFuncionario" />
+          <ScalarProperty Name="IdFuncao" ColumnName="IdFuncao" />
+          <ScalarProperty Name="IdFuncionario" ColumnName="IdFuncionario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_Acessos">
+      <EntityTypeMapping TypeName="db_sgqModel.tbl_Acessos">
+        <MappingFragment StoreEntitySet="tbl_Acessos">
+          <ScalarProperty Name="IdFuncaoAcesso" ColumnName="IdFuncaoAcesso" />
+          <ScalarProperty Name="DsAcesso" ColumnName="DsAcesso" />
+          <ScalarProperty Name="IdAcesso" ColumnName="IdAcesso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

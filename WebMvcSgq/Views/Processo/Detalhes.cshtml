@@ -1,0 +1,42 @@
+﻿@model WebMvcSgq.Models.tbl_Processo
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<h2>Detalhes</h2>
+
+<div>
+    <h4>Processo SGQ</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dt_Cadastro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dt_Cadastro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dt_Alteracao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dt_Alteracao)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "EditarProcesso", new { id = Model.IdProcesso }) |
+    @Html.ActionLink("Voltar a Lista de Processos", "Index")
+</p>

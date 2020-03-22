@@ -1,0 +1,42 @@
+﻿@model IEnumerable<WebMvcSgq.Models.Tbl_Atividade_Diaria>
+
+@{
+    ViewBag.Title = "Atividade Diária";
+    var grid = new WebGrid(source: Model, canPage: true, defaultSort: "IdAtividade", rowsPerPage: 5, canSort: true);
+}
+
+<br />
+<p>
+    @Html.ActionLink("Nova Atividade", "AdicionaAtividadeDiaria", null, new { @class = "btn btn-primary" })
+</p>
+@grid.GetHtml(
+tableStyle: "webGrid",
+htmlAttributes: new { id = "checkableGrid" },
+fillEmptyRows: true,
+alternatingRowStyle: "alt",
+headerStyle: "grid-header",
+footerStyle: "foot-grid",
+mode: WebGridPagerModes.All,
+firstText: "<< Primeiro",
+previousText: " < Anterior",
+nextText: "Próximo >",
+lastText: "Último >>",
+caption: "Detalhes da Atividade",
+emptyRowCellValue: null,
+columns: new[]{
+    grid.Column("IdAtividade",header:"ID",style:"text-align-left"),
+    grid.Column("IdProcesso",header:"Processo"),
+    grid.Column("Descricao",header:"Descricao"),
+    grid.Column("Dt_Cadastro",header:"Data Cadastro"),
+    grid.Column("Dt_Alteracao",header:"Data Alteracao"),
+    grid.Column("",header: "Ações",format: @<text>@Html.ActionLink("Editar", "EditarAtividadeDiaria", new {IdAtividade = item.IdAtividade })
+    |
+    @Html.ActionLink("Deletar", "DeletarAtividadeDiaria", new {idAtividade = item.IdAtividade })
+    |
+    @Html.ActionLink("Detalhes", "Detalhes", new { IdAtividade = item.IdAtividade })
+    |
+    @Html.ActionLink("Registrar Nao Conformidade", "NaoConformidade", "NaoConformidade")
+    </text>
+)
+}
+)

@@ -1,0 +1,50 @@
+﻿@model WebMvcSgq.Models.Tbl_Atividade_Diaria
+
+@{
+    ViewBag.Title = "Detalhes";
+}
+
+<h2>Detalhes</h2>
+
+<div>
+    <h4>Detalhes</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dt_Cadastro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dt_Cadastro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dt_Alteracao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dt_Alteracao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_Processo.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_Processo.Nome)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "EditarAtividadeDiaria", new { IdAtividade = Model.IdAtividade }) |
+    @Html.ActionLink("Voltar a Atividade Diaria", "Index")
+</p>

@@ -1,0 +1,76 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using WebMvcSgq.Models;
+using WebMvcSgq.Models.Interface;
+
+namespace WebMvcSgq.Sessao
+{
+    public class Acessos
+    {
+        private IAcessoRepositorio rep = null;
+
+        public Acessos()
+        {
+            this.rep = new AcessoRepositorio();
+        }
+
+        public string HOME = "~/HOME";
+        public string HOME_ABOUT = "~/HOME/ABOUT";
+        public string HOME_CONTACT = "~/HOME/CONTACT";
+        public string PROCESSO = "~/PROCESSO";
+        public string PROCESSO_ADICIONAPROCESSO = "~/PROCESSO/ADICIONARPROCESSO";
+        public string PROCESSO_EDITARPROCESSO = "~/PROCESSO/EDITARPROCESSO";
+        public string PROCESSO_DELETARPROCESSO = "~/PROCESSO/DELETARPROCESSO";
+        public string PROCESSO_DETALHES = "~/PROCESSO/DETALHES";
+        public string LOGIN_LOGIN = "~/LOGIN/LOGIN";
+        public string ATIVIDADEDIARIA = "~/ATIVIDADEDIARIA";
+        public string ATIVIDADEDIARIA_ADICIONAATIVIDADEDIARIA = "~/ATIVIDADEDIARIA/ADICIONAATIVIDADEDIARIA";
+        public string ATIVIDADEDIARIA_DELETARATIVIDADEDIARIA = "~/ATIVIDADEDIARIA/DELETARATIVIDADEDIARIA";
+        public string ATIVIDADEDIARIA_EDITARATIVIDADEDIARIA = "~/ATIVIDADEDIARIA/EDITARATIVIDADEDIARIA";
+        public string ATIVIDADEDIARIA_DETALHES = "~/ATIVIDADEDIARIA/DETALHES";
+
+        public bool ConsultaAcesso(string caminhoUrl)
+        {
+            bool validar = false;
+
+            if (caminhoUrl.Equals("/"))
+                caminhoUrl = "/Home";
+
+            tbl_Funcionario usuario = SessaoUsuario.SessaoUsuarios;
+
+            IList<tbl_Acessos> lista = rep.GetAcessosFuncao(usuario.IdFuncao.Value);
+
+            if (lista.Where(p => p.DsAcesso.Equals(caminhoUrl.ToUpper())).Count() > 0)
+                validar = true;
+            
+            return validar;
+        }
+
+
+
+        public List<String> listaAcessos()
+        {
+            List<String> lista = new List<string>();
+
+            lista.Add(HOME);
+            lista.Add(HOME_ABOUT);
+            lista.Add(HOME_CONTACT);
+            lista.Add(PROCESSO);
+            lista.Add(PROCESSO_ADICIONAPROCESSO);
+            lista.Add(PROCESSO_EDITARPROCESSO);
+            lista.Add(PROCESSO_DELETARPROCESSO);
+            lista.Add(PROCESSO_DETALHES);
+            lista.Add(LOGIN_LOGIN);
+            lista.Add(ATIVIDADEDIARIA);
+            lista.Add(ATIVIDADEDIARIA_ADICIONAATIVIDADEDIARIA);
+            lista.Add(ATIVIDADEDIARIA_DELETARATIVIDADEDIARIA);
+            lista.Add(ATIVIDADEDIARIA_EDITARATIVIDADEDIARIA);
+            lista.Add(ATIVIDADEDIARIA_DETALHES);
+
+            return lista;
+        }
+
+    }
+}

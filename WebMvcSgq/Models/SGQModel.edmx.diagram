@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0da794d894dc4177ae3758e4cd0a9f36" Name="Diagram1">
+        <EntityTypeShape EntityType="db_sgqModel.tbl_Processo" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="db_sgqModel.Tbl_Atividade_Diaria" Width="1.5" PointX="3" PointY="8.5" />
+        <EntityTypeShape EntityType="db_sgqModel.tbl_atividades" Width="1.5" PointX="5.25" PointY="7" />
+        <EntityTypeShape EntityType="db_sgqModel.tbl_etapa" Width="1.5" PointX="3" PointY="5.125" />
+        <EntityTypeShape EntityType="db_sgqModel.tbl_funcao" Width="1.5" PointX="3.375" PointY="1.375" />
+        <AssociationConnector Association="db_sgqModel.FK_AtivDiaria_AtividadeId" />
+        <AssociationConnector Association="db_sgqModel.FK_Processo_AtividadeId" />
+        <AssociationConnector Association="db_sgqModel.FK_AtivDiaria_EtapaId" />
+        <AssociationConnector Association="db_sgqModel.FK_Processo_EtapaId" />
+        <EntityTypeShape EntityType="db_sgqModel.tbl_Funcionario" Width="1.5" PointX="5.625" PointY="0.875" />
+        <AssociationConnector Association="db_sgqModel.FK_Funcao_FuncionarioId" />
+        <EntityTypeShape EntityType="db_sgqModel.tbl_Acessos" Width="1.5" PointX="5.625" PointY="4.375" />
+        <AssociationConnector Association="db_sgqModel.FK_Funcao_AcessoId" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

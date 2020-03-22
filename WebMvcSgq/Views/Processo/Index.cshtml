@@ -1,0 +1,51 @@
+﻿@model IEnumerable<WebMvcSgq.Models.tbl_Processo>
+
+@{
+    ViewBag.Title = "Index";
+    var grid = new WebGrid(source: Model, canPage: true, defaultSort: "IdProcesso", rowsPerPage: 5, canSort: true);
+}
+
+<br />
+<p>
+    @Html.ActionLink("Novo Processo", "AdicionarProcesso", null, new { @class = "btn btn-primary" })
+</p>
+@grid.GetHtml(
+tableStyle: "webGrid",
+htmlAttributes: new { id = "checkableGrid" },
+fillEmptyRows: true,
+alternatingRowStyle: "alt",
+headerStyle: "grid-header",
+footerStyle: "foot-grid",
+mode: WebGridPagerModes.All,
+firstText: "<< Primeiro",
+previousText: " < Anterior",
+nextText: "Próximo >",
+lastText: "Último >>",
+caption: "Detalhes do Processo",
+emptyRowCellValue: null,
+columns: new[]{
+    grid.Column("IdProcesso",header:"ID",style:"text-align-left"),
+    grid.Column("Nome",header:"Nome"),
+    grid.Column("Dt_Cadastro",header:"Data Cadastro"),
+    grid.Column("Dt_Alteracao",header:"Data Alteracao"),
+    grid.Column("",header: "Ações",format: @<text>@Html.ActionLink("Editar", "EditarProcesso", new { id = item.IdProcesso })
+    |
+    @Html.ActionLink("Deletar", "DeletarProcesso", new { id = item.IdProcesso })
+    |
+    @Html.ActionLink("Detalhes", "Detalhes", new { id = item.IdProcesso })
+    |
+
+    @using (Html.BeginForm("Index","AtividadeDiaria",FormMethod.Get))
+    {
+    @Html.ActionLink("Atividades Diarias", "Index", "AtividadeDiaria",new { id = item.IdProcesso })
+    }
+    </text>
+)
+
+}
+)
+
+@using (Html.BeginForm("Index", "AtividadeDiaria", FormMethod.Get))
+{
+    @Html.ActionLink("Atividades Diarias", "Index", "AtividadeDiaria")
+}

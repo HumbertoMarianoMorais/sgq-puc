@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db_sgqModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbl_Acessos">
+    <Key>
+      <PropertyRef Name="IdAcesso" />
+    </Key>
+    <Property Name="IdAcesso" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DsAcesso" Type="varchar" MaxLength="300" />
+    <Property Name="IdFuncaoAcesso" Type="bigint" />
+  </EntityType>
+  <EntityType Name="Tbl_Atividade_Diaria">
+    <Key>
+      <PropertyRef Name="IdAtividade" />
+    </Key>
+    <Property Name="IdAtividade" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdProcesso" Type="bigint" />
+    <Property Name="Descricao" Type="varchar" MaxLength="50" />
+    <Property Name="Dt_Cadastro" Type="datetime" />
+    <Property Name="Dt_Alteracao" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_atividades">
+    <Key>
+      <PropertyRef Name="IdAtividade" />
+    </Key>
+    <Property Name="IdAtividade" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdAtividadeDiaria" Type="bigint" />
+    <Property Name="IdEtapa" Type="bigint" />
+  </EntityType>
+  <EntityType Name="tbl_etapa">
+    <Key>
+      <PropertyRef Name="IdEtapa" />
+    </Key>
+    <Property Name="IdEtapa" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdProcesso" Type="bigint" />
+    <Property Name="Descricao" Type="varchar" MaxLength="50" />
+    <Property Name="Complemento" Type="varchar" MaxLength="140" />
+    <Property Name="Dt_Cadastro" Type="datetime" />
+    <Property Name="Dt_Alteração" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_funcao">
+    <Key>
+      <PropertyRef Name="IdFuncao" />
+    </Key>
+    <Property Name="IdFuncao" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DsFuncao" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tbl_Funcionario">
+    <Key>
+      <PropertyRef Name="IdFuncionario" />
+    </Key>
+    <Property Name="IdFuncionario" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdFuncao" Type="bigint" />
+    <Property Name="DsFuncionario" Type="varchar" MaxLength="50" />
+    <Property Name="DsUsuario" Type="varchar" MaxLength="50" />
+    <Property Name="DsSenha" Type="varchar" MaxLength="100" />
+    <Property Name="Dt_Cadastro" Type="datetime" />
+    <Property Name="Dt_Alteracao" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbl_Processo">
+    <Key>
+      <PropertyRef Name="IdProcesso" />
+    </Key>
+    <Property Name="IdProcesso" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="50" />
+    <Property Name="Dt_Cadastro" Type="datetime" />
+    <Property Name="Dt_Alteracao" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_AtivDiaria_AtividadeId">
+    <End Role="Tbl_Atividade_Diaria" Type="Self.Tbl_Atividade_Diaria" Multiplicity="0..1" />
+    <End Role="tbl_atividades" Type="Self.tbl_atividades" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tbl_Atividade_Diaria">
+        <PropertyRef Name="IdAtividade" />
+      </Principal>
+      <Dependent Role="tbl_atividades">
+        <PropertyRef Name="IdAtividadeDiaria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AtivDiaria_EtapaId">
+    <End Role="tbl_etapa" Type="Self.tbl_etapa" Multiplicity="0..1" />
+    <End Role="tbl_atividades" Type="Self.tbl_atividades" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_etapa">
+        <PropertyRef Name="IdEtapa" />
+      </Principal>
+      <Dependent Role="tbl_atividades">
+        <PropertyRef Name="IdEtapa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Funcao_AcessoId">
+    <End Role="tbl_funcao" Type="Self.tbl_funcao" Multiplicity="0..1" />
+    <End Role="tbl_Acessos" Type="Self.tbl_Acessos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_funcao">
+        <PropertyRef Name="IdFuncao" />
+      </Principal>
+      <Dependent Role="tbl_Acessos">
+        <PropertyRef Name="IdFuncaoAcesso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Funcao_FuncionarioId">
+    <End Role="tbl_funcao" Type="Self.tbl_funcao" Multiplicity="0..1" />
+    <End Role="tbl_Funcionario" Type="Self.tbl_Funcionario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_funcao">
+        <PropertyRef Name="IdFuncao" />
+      </Principal>
+      <Dependent Role="tbl_Funcionario">
+        <PropertyRef Name="IdFuncao" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Processo_AtividadeId">
+    <End Role="tbl_Processo" Type="Self.tbl_Processo" Multiplicity="0..1" />
+    <End Role="Tbl_Atividade_Diaria" Type="Self.Tbl_Atividade_Diaria" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Processo">
+        <PropertyRef Name="IdProcesso" />
+      </Principal>
+      <Dependent Role="Tbl_Atividade_Diaria">
+        <PropertyRef Name="IdProcesso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Processo_EtapaId">
+    <End Role="tbl_Processo" Type="Self.tbl_Processo" Multiplicity="0..1" />
+    <End Role="tbl_etapa" Type="Self.tbl_etapa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_Processo">
+        <PropertyRef Name="IdProcesso" />
+      </Principal>
+      <Dependent Role="tbl_etapa">
+        <PropertyRef Name="IdProcesso" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="db_sgqModelStoreContainer">
+    <EntitySet Name="tbl_Acessos" EntityType="Self.tbl_Acessos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tbl_Atividade_Diaria" EntityType="Self.Tbl_Atividade_Diaria" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_atividades" EntityType="Self.tbl_atividades" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_etapa" EntityType="Self.tbl_etapa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_funcao" EntityType="Self.tbl_funcao" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Funcionario" EntityType="Self.tbl_Funcionario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_Processo" EntityType="Self.tbl_Processo" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AtivDiaria_AtividadeId" Association="Self.FK_AtivDiaria_AtividadeId">
+      <End Role="Tbl_Atividade_Diaria" EntitySet="Tbl_Atividade_Diaria" />
+      <End Role="tbl_atividades" EntitySet="tbl_atividades" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AtivDiaria_EtapaId" Association="Self.FK_AtivDiaria_EtapaId">
+      <End Role="tbl_etapa" EntitySet="tbl_etapa" />
+      <End Role="tbl_atividades" EntitySet="tbl_atividades" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Funcao_AcessoId" Association="Self.FK_Funcao_AcessoId">
+      <End Role="tbl_funcao" EntitySet="tbl_funcao" />
+      <End Role="tbl_Acessos" EntitySet="tbl_Acessos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Funcao_FuncionarioId" Association="Self.FK_Funcao_FuncionarioId">
+      <End Role="tbl_funcao" EntitySet="tbl_funcao" />
+      <End Role="tbl_Funcionario" EntitySet="tbl_Funcionario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Processo_AtividadeId" Association="Self.FK_Processo_AtividadeId">
+      <End Role="tbl_Processo" EntitySet="tbl_Processo" />
+      <End Role="Tbl_Atividade_Diaria" EntitySet="Tbl_Atividade_Diaria" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Processo_EtapaId" Association="Self.FK_Processo_EtapaId">
+      <End Role="tbl_Processo" EntitySet="tbl_Processo" />
+      <End Role="tbl_etapa" EntitySet="tbl_etapa" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
