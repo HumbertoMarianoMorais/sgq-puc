@@ -17,6 +17,7 @@ namespace WebMvcSgq.Models
         public long IdAtividade { get; set; }
         public Nullable<long> IdAtividadeDiaria { get; set; }
         public Nullable<long> IdEtapa { get; set; }
+        public Nullable<int> DsSelecionado { get; set; }
     
         public virtual Tbl_Atividade_Diaria Tbl_Atividade_Diaria { get; set; }
         public virtual tbl_etapa tbl_etapa { get; set; }

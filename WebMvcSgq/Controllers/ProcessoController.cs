@@ -27,7 +27,6 @@ namespace WebMvcSgq.Controllers
 
             return RedirectToAction("Login", "Login");
 
-            return View();
         }
 
         public ActionResult Index()

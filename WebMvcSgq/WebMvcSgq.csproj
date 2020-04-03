@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BeginCollectionItem, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\BeginCollectionItem.1.2.1.0\lib\net35\BeginCollectionItem.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -140,9 +143,14 @@
     </Compile>
     <Compile Include="Models\AcessoRepositorio.cs" />
     <Compile Include="Models\AtividadeDiariaRepositorio.cs" />
+    <Compile Include="Models\AtividadeRepositorio.cs" />
+    <Compile Include="Models\Classe\AtividadeClass.cs" />
+    <Compile Include="Models\EtapaRepositorio.cs" />
     <Compile Include="Models\FuncionarioRepositorio.cs" />
     <Compile Include="Models\Interface\IAcessoRepositorio.cs" />
     <Compile Include="Models\Interface\IAtividadeDiariaRepositorio.cs" />
+    <Compile Include="Models\Interface\IAtividadeRepositorio.cs" />
+    <Compile Include="Models\Interface\IEtapaRepositorio.cs" />
     <Compile Include="Models\Interface\IFuncionarioRepositorio.cs" />
     <Compile Include="Models\Interface\IIncidenteRepositorio.cs" />
     <Compile Include="Models\IncidenteRepositorio.cs" />
@@ -186,6 +194,8 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sessao\Acessos.cs" />
+    <Compile Include="Sessao\SessaoAtividadeDiaria.cs" />
+    <Compile Include="Sessao\SessaoProcesso.cs" />
     <Compile Include="Sessao\SessaoUsuario.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -259,6 +269,7 @@
     <Content Include="Views\AtividadeDiaria\EditarAtividadeDiaria.cshtml" />
     <Content Include="Views\AtividadeDiaria\DeletarAtividadeDiaria.cshtml" />
     <Content Include="Views\AtividadeDiaria\Detalhes.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Collection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

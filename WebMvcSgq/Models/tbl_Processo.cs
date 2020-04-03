@@ -11,8 +11,7 @@ namespace WebMvcSgq.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class tbl_Processo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,9 +23,7 @@ namespace WebMvcSgq.Models
     
         public long IdProcesso { get; set; }
         public string Nome { get; set; }
-        [Display(Name = "Data Cadastro")]
         public Nullable<System.DateTime> Dt_Cadastro { get; set; }
-        [Display(Name = "Data Alteracao")]
         public Nullable<System.DateTime> Dt_Alteracao { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

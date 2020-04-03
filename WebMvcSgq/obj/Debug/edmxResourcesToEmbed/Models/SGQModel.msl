@@ -25,6 +25,7 @@
     <EntitySetMapping Name="tbl_atividades">
       <EntityTypeMapping TypeName="db_sgqModel.tbl_atividades">
         <MappingFragment StoreEntitySet="tbl_atividades">
+          <ScalarProperty Name="DsSelecionado" ColumnName="DsSelecionado" />
           <ScalarProperty Name="IdEtapa" ColumnName="IdEtapa" />
           <ScalarProperty Name="IdAtividadeDiaria" ColumnName="IdAtividadeDiaria" />
           <ScalarProperty Name="IdAtividade" ColumnName="IdAtividade" />

@@ -25,6 +25,7 @@
     <Property Name="IdAtividade" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="IdAtividadeDiaria" Type="bigint" />
     <Property Name="IdEtapa" Type="bigint" />
+    <Property Name="DsSelecionado" Type="int" />
   </EntityType>
   <EntityType Name="tbl_etapa">
     <Key>

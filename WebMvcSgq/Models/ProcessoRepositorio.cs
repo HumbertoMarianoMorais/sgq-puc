@@ -72,7 +72,7 @@ namespace WebMvcSgq.Models
             }
         }
 
-        tbl_Processo IProcessoRepositorio.Detalhes(int processoId)
+        tbl_Processo IProcessoRepositorio.Detalhes(long processoId)
         {
             try
             {
@@ -110,11 +110,11 @@ namespace WebMvcSgq.Models
             }
         }
 
-        tbl_Processo IProcessoRepositorio.GetProcessoPorID(int processoId)
+        tbl_Processo IProcessoRepositorio.GetProcessoPorID(long processoId)
         {
             try
             {
-                return db.tbl_Processo.SingleOrDefault(x => x.IdProcesso == processoId);
+                return db.tbl_Processo.Include("tbl_etapa").SingleOrDefault(x => x.IdProcesso == processoId);
             }
             catch (Exception ex)
             {

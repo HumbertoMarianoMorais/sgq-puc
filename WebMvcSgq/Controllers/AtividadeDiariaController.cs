@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebMvcSgq.Models;
+using WebMvcSgq.Models.Classe;
 using WebMvcSgq.Models.Interface;
 using WebMvcSgq.Sessao;
 
@@ -12,9 +13,16 @@ namespace WebMvcSgq.Controllers
     public class AtividadeDiariaController : Controller
     {
         private IAtividadeDiariaRepositorio rep = null;
+        private IProcessoRepositorio processoRep = null;
+        private IEtapaRepositorio etapaRep = null;
+        private IAtividadeRepositorio ativRep = null;
+
         public AtividadeDiariaController()
         {
             this.rep = new AtividadeDiariaRepositorio();
+            this.processoRep = new ProcessoRepositorio();
+            this.etapaRep = new EtapaRepositorio();
+            this.ativRep = new AtividadeRepositorio();
         }
 
         public ActionResult Login()
@@ -25,11 +33,10 @@ namespace WebMvcSgq.Controllers
 
             return RedirectToAction("Login", "Login");
 
-            return View();
         }
 
         // GET: AtividadeDiaria
-        public ActionResult Index()
+        public ActionResult Index(int id = 0)
         {
             Acessos acesso = new Acessos();
 
@@ -40,44 +47,107 @@ namespace WebMvcSgq.Controllers
                 return RedirectToAction("Login", "Login");
             }
 
-            if (!acesso.ConsultaAcesso(HttpContext.Request.Path))
+            string caminho = HttpContext.Request.Path;
+            if (caminho.ToUpper().Contains(acesso.ATIVIDADEDIARIA_INDEX))
+                caminho = acesso.ATIVIDADEDIARIA_INDEX;
+
+            if (!acesso.ConsultaAcesso(caminho))
             {
                 return RedirectToAction("SemAcesso", "Acesso");
             }
 
-            var listaAtivDiaria = from ativDiaria in rep.GetAtividadeDiaria()
-                                 select ativDiaria;
+            IEnumerable<Tbl_Atividade_Diaria> listaAtivDiaria = null;
+
+            if (id > 0) { 
+                listaAtivDiaria = from ativDiaria in rep.GetAtividadeDiaria().Where(p=> p.IdProcesso == id)
+               select ativDiaria;
+            }
+            else
+            {
+                listaAtivDiaria = from ativDiaria in rep.GetAtividadeDiaria()
+                                  select ativDiaria;
+            }
+
+            SessaoProcesso.SessaoProcessoId = id;
+
             return View(listaAtivDiaria);
         }
 
-
-        public ActionResult AdicionaAtividadeDiaria()
+        public ActionResult GetAtividades()
         {
-            return View();
+            IEnumerable<tbl_atividades> listaAtividade = ativRep.GetAtividade(SessaoAtividadeDiaria.SessaoAtivDiariaId);
+
+            ViewBag.listAtividades = listaAtividade;
+            return View(listaAtividade.ToList());
         }
 
-        [HttpPost]
-        public ActionResult AdicionaAtividadeDiaria(Tbl_Atividade_Diaria ativDiaria)
+        public ActionResult AdicionaAtividadeDiaria(int IdAtividade)
         {
-            rep.AdicionaAtividadeDiaria(ativDiaria);
-            return RedirectToAction("Index");
-        }
+            Tbl_Atividade_Diaria ativDiaria = new Tbl_Atividade_Diaria();
 
-        public ActionResult EditarAtividadeDiaria(int IdAtividade = 0)
-        {
-            Tbl_Atividade_Diaria ativDiaria = rep.GetAtividadePorID(IdAtividade);
+            SessaoAtividadeDiaria.SessaoAtivDiariaId = IdAtividade;
 
-            if (ativDiaria == null)
-                return HttpNotFound();
+            GetAtividades();
+
+            ViewBag.IdProcesso = new SelectList
+                (
+                    processoRep.GetProcessos(),
+                    "IdProcesso",
+                    "Nome"
+                );
+
 
             return View(ativDiaria);
         }
 
         [HttpPost]
-        public ActionResult EditarAtividadeDiaria(Tbl_Atividade_Diaria ativDiaria)
+        public ActionResult AdicionaAtividadeDiaria(Tbl_Atividade_Diaria ativDiaria)
         {
-            rep.EditarAtividadeDiaria(ativDiaria);
+            ViewBag.IdProcesso = new SelectList
+               (
+                   processoRep.GetProcessos(),
+                   "IdProcesso",
+                   "Nome"
+               );
+
+            rep.AdicionaAtividadeDiaria(ativDiaria);
             return RedirectToAction("Index");
+        }
+
+        public ActionResult EditarAtividadeDiaria(int IdAtividade = 0,int IdProcesso = 0)
+        {
+            AtiviModelView amv = new AtiviModelView();
+            amv = rep.GetAtividadeDiariaPorID(IdAtividade);
+
+            SessaoProcesso.SessaoProcessoId = IdProcesso;
+            SessaoAtividadeDiaria.SessaoAtivDiariaId = IdAtividade;
+
+            return View(amv);
+
+            //Tbl_Atividade_Diaria ativDiaria = rep.GetAtividadePorID(IdAtividade);
+
+            //SessaoProcesso.SessaoProcessoId = IdProcesso;
+            //SessaoAtividadeDiaria.SessaoAtivDiariaId = IdAtividade;
+
+            //GetAtividades();
+
+            //if (ativDiaria == null)
+            //    return HttpNotFound();
+
+            //return View(ativDiaria);
+        }
+
+        [HttpPost]
+        public ActionResult EditarAtividadeDiaria(AtiviModelView amv)
+        {
+
+            rep.EditarAtividadeDiaria(amv);
+            return RedirectToAction("Index");
+
+            //GetAtividades();
+
+            //rep.EditarAtividadeDiaria(ativDiaria, ViewBag.listAtividades);
+            //return RedirectToAction("Index");
         }
 
         public ActionResult DeletarAtividadeDiaria(int IdAtividade = 0)

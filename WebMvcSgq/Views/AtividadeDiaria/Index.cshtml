@@ -7,7 +7,7 @@
 
 <br />
 <p>
-    @Html.ActionLink("Nova Atividade", "AdicionaAtividadeDiaria", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Nova Atividade", "AdicionaAtividadeDiaria", new { IdAtividade = 0 }, new { @class = "btn btn-primary" })
 </p>
 @grid.GetHtml(
 tableStyle: "webGrid",
@@ -25,11 +25,11 @@ caption: "Detalhes da Atividade",
 emptyRowCellValue: null,
 columns: new[]{
     grid.Column("IdAtividade",header:"ID",style:"text-align-left"),
-    grid.Column("IdProcesso",header:"Processo"),
+    grid.Column("tbl_Processo.Nome",header:"Processo"),
     grid.Column("Descricao",header:"Descricao"),
     grid.Column("Dt_Cadastro",header:"Data Cadastro"),
     grid.Column("Dt_Alteracao",header:"Data Alteracao"),
-    grid.Column("",header: "Ações",format: @<text>@Html.ActionLink("Editar", "EditarAtividadeDiaria", new {IdAtividade = item.IdAtividade })
+    grid.Column("",header: "Ações",format: @<text>@Html.ActionLink("Editar", "EditarAtividadeDiaria", new {IdAtividade = item.IdAtividade, IdProcesso = item.IdProcesso })
     |
     @Html.ActionLink("Deletar", "DeletarAtividadeDiaria", new {idAtividade = item.IdAtividade })
     |
@@ -40,3 +40,9 @@ columns: new[]{
 )
 }
 )
+
+@using (Html.BeginForm("Index", "Processo", FormMethod.Get))
+{
+    @Html.ActionLink("Voltar aos Processo", "Index", "Processo")
+}
+

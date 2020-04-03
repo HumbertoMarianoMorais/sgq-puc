@@ -34,18 +34,9 @@ columns: new[]{
     |
     @Html.ActionLink("Detalhes", "Detalhes", new { id = item.IdProcesso })
     |
-
-    @using (Html.BeginForm("Index","AtividadeDiaria",FormMethod.Get))
-    {
-    @Html.ActionLink("Atividades Diarias", "Index", "AtividadeDiaria",new { id = item.IdProcesso })
-    }
+    @Html.ActionLink("Atividades Diaria","Index", "AtividadeDiaria",new { id = item.IdProcesso },null)
     </text>
 )
 
 }
 )
-
-@using (Html.BeginForm("Index", "AtividadeDiaria", FormMethod.Get))
-{
-    @Html.ActionLink("Atividades Diarias", "Index", "AtividadeDiaria")
-}

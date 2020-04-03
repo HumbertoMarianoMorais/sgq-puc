@@ -65,6 +65,7 @@
     <Property Name="IdEtapa" Type="Int64" />
     <NavigationProperty Name="Tbl_Atividade_Diaria" Relationship="db_sgqModel.FK_AtivDiaria_AtividadeId" FromRole="tbl_atividades" ToRole="Tbl_Atividade_Diaria" />
     <NavigationProperty Name="tbl_etapa" Relationship="db_sgqModel.FK_AtivDiaria_EtapaId" FromRole="tbl_atividades" ToRole="tbl_etapa" />
+    <Property Name="DsSelecionado" Type="Int32" />
   </EntityType>
   <EntityType Name="tbl_etapa">
     <Key>
