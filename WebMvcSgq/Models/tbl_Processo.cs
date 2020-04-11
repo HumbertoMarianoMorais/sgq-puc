@@ -17,8 +17,9 @@ namespace WebMvcSgq.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tbl_Processo()
         {
-            this.Tbl_Atividade_Diaria = new HashSet<Tbl_Atividade_Diaria>();
             this.tbl_etapa = new HashSet<tbl_etapa>();
+            this.Tbl_Atividade_Diaria = new HashSet<Tbl_Atividade_Diaria>();
+            this.tbl_NaoConformidade = new HashSet<tbl_NaoConformidade>();
         }
     
         public long IdProcesso { get; set; }
@@ -27,8 +28,10 @@ namespace WebMvcSgq.Models
         public Nullable<System.DateTime> Dt_Alteracao { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_etapa> tbl_etapa { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Tbl_Atividade_Diaria> Tbl_Atividade_Diaria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbl_etapa> tbl_etapa { get; set; }
+        public virtual ICollection<tbl_NaoConformidade> tbl_NaoConformidade { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using WebMvcSgq.Models.Classe;
 using WebMvcSgq.Models.Interface;
 
 namespace WebMvcSgq.Models
@@ -16,7 +17,7 @@ namespace WebMvcSgq.Models
             try
             {
                 processo.Dt_Cadastro = DateTime.Now;
-                
+
                 db.tbl_Processo.Add(processo);
                 db.SaveChanges();
             }
@@ -98,6 +99,61 @@ namespace WebMvcSgq.Models
                 IEnumerable<tbl_Processo> lista;
                 lista = db.tbl_Processo.ToList();
                 return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (db != null)
+                    db.Dispose();
+            }
+        }
+
+
+        IList<RelatorioProcesso> IProcessoRepositorio.GetProcessoRelatorio(ref RelatorioClass relat)
+        {
+            try
+            {
+                tbl_Processo processo;
+                long IdProcesso = relat.IdProcesso;
+                long IdAtividadeDiaria = relat.IdAtividadeDiaria;
+                //int DsSeleci = relat.IsActive ? 1 : 0;
+
+                IList<RelatorioProcesso> listProcesso = new List<RelatorioProcesso>();
+
+                using (var dbs = new db_sgqEntities())
+                {
+                    processo = dbs.tbl_Processo.Include("tbl_Atividade_Diaria").Include("tbl_etapa").Where(p => p.IdProcesso == IdProcesso).FirstOrDefault();
+
+                    if (processo != null)
+                    {
+                        Tbl_Atividade_Diaria ativDiaria = processo.Tbl_Atividade_Diaria.Where(p => p.IdAtividadeDiaria == IdAtividadeDiaria).FirstOrDefault();
+
+                        if (ativDiaria != null)
+                        {
+                            foreach (var p in ativDiaria.tbl_atividades.Where(p => p.tbl_etapa.IdProcesso == IdProcesso).ToList())
+                            {
+                                RelatorioProcesso rp = new RelatorioProcesso();
+                                rp.NomeProcesso = processo.Nome;
+                                rp.DataCadastro = (processo.Dt_Cadastro != null ? processo.Dt_Cadastro.Value : DateTime.MinValue);
+                                rp.NomeAtividadeDiaria = ativDiaria.Descricao;
+                                rp.Etapa = p.tbl_etapa.Descricao;
+                                rp.status = (p.DsSelecionado == 1 ? "Concluído" : "Em andamento");
+
+                                listProcesso.Add(rp);
+                            }
+
+                            relat.relatProcesso = listProcesso;
+                            return relat.relatProcesso;
+                        }
+
+                    }
+
+                }
+
+                return listProcesso;
             }
             catch (Exception ex)
             {

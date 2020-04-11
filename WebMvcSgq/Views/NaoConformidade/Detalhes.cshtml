@@ -1,21 +1,15 @@
-﻿@model WebMvcSgq.Models.Tbl_Atividade_Diaria
-
-@{
-    ViewBag.Title = "Detalhes";
-}
-
-<h2>Detalhes</h2>
+﻿@model WebMvcSgq.Models.tbl_NaoConformidade
 
 <div>
-    <h4>Detalhes</h4>
+    <h4>Detalhes de Não Conformidade</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Descricao)
+            @Html.DisplayNameFor(model => model.DsNaoConformidade)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Descricao)
+            @Html.DisplayFor(model => model.DsNaoConformidade)
         </dd>
 
         <dt>
@@ -42,9 +36,17 @@
             @Html.DisplayFor(model => model.tbl_Processo.Nome)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Tbl_Atividade_Diaria.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tbl_Atividade_Diaria.Descricao)
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Editar", "EditarAtividadeDiaria", new { IdAtividadeDiaria = Model.IdAtividadeDiaria }) |
-    @Html.ActionLink("Voltar a Atividade Diaria", "Index")
+    @Html.ActionLink("Editar", "EditarNaoConformidade", new { IdNaoConformidade = Model.IdNaoConformidade }) |
+    @Html.ActionLink("Voltar", "Index")
 </p>

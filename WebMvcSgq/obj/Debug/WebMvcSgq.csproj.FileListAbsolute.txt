@@ -51,6 +51,7 @@ C:\Users\humbe\source\repos\WebMvcSgq\bin\roslyn\vbc.rsp
 C:\Users\humbe\source\repos\WebMvcSgq\bin\roslyn\VBCSCompiler.exe
 C:\Users\humbe\source\repos\WebMvcSgq\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\humbe\source\repos\WebMvcSgq\bin\Antlr3.Runtime.dll
+C:\Users\humbe\source\repos\WebMvcSgq\bin\BeginCollectionItem.dll
 C:\Users\humbe\source\repos\WebMvcSgq\bin\EntityFramework.dll
 C:\Users\humbe\source\repos\WebMvcSgq\bin\EntityFramework.SqlServer.dll
 C:\Users\humbe\source\repos\WebMvcSgq\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll

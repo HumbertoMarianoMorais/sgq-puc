@@ -1,78 +1,4 @@
-﻿@*@model WebMvcSgq.Models.Tbl_Atividade_Diaria
-
-    @{
-        ViewBag.Title = "Editar Atividade Diaria";
-    }
-
-    <h2>Editar Atividade Diaria</h2>
-
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-horizontal">
-            <h4>Editar Atividade Diaria</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.IdAtividade)
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.IdProcesso, "IdProcesso", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.IdProcesso, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
-                    @Html.ValidationMessageFor(model => model.IdProcesso, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.tbl_Processo.Nome, "Processo", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.tbl_Processo.Nome, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
-                    @Html.ValidationMessageFor(model => model.tbl_Processo.Nome, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Descricao, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.Descricao, new { htmlAttributes = new { @class = "form-control" }, Style = "width: 288px; Height:65px;" })
-                    @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Dt_Cadastro, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Dt_Cadastro, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
-                    @Html.ValidationMessageFor(model => model.Dt_Cadastro, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Salvar" class="btn btn-default" />
-                </div>
-            </div>
-        </div>
-    }
-
-    <table class="webGrid" id="tblAtividades">
-            <tr>
-                <th>IdEtapa</th>
-                <th>Descrição</th>
-                <th>Ação</th>
-            </tr>
-            @foreach (var item in ViewBag.listAtividades)
-            {
-                <tr>
-                    <td>@item.IdEtapa</td>
-                    <td>@item.tbl_etapa.Descricao</td>
-                    <td>@Html.CheckBox("DsSelecionado", (bool)Convert.ToBoolean(@item.DsSelecionado))</td>
-                </tr>
-            }
-    </table>*@
-
-@using HtmlHelpers.BeginCollectionItem;
+﻿@using HtmlHelpers.BeginCollectionItem;
 
 @model WebMvcSgq.Models.Classe.AtiviModelView
 
@@ -85,82 +11,77 @@
 @using (Html.BeginForm("EditarAtividadeDiaria", "AtividadeDiaria", FormMethod.Post))
 {
 
-    <div class="form-horizontal">
-        <h4>Editar Atividade Diaria</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.atividadeDiaCla.IdAtividade)
+<div class="form-horizontal">
+    <h4>Editar Atividade Diaria</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.atividadeDiaCla.IdAtividade)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.atividadeDiaCla.IdProcesso, "IdProcesso", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.atividadeDiaCla.IdProcesso, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.atividadeDiaCla.IdProcesso, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.atividadeDiaCla.IdProcesso, "IdProcesso", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.atividadeDiaCla.IdProcesso, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.atividadeDiaCla.IdProcesso, "", new { @class = "text-danger" })
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.atividadeDiaCla.NomeProcesso, "Processo", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.atividadeDiaCla.NomeProcesso, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.atividadeDiaCla.NomeProcesso, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.atividadeDiaCla.Descricao, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.atividadeDiaCla.Descricao, new { htmlAttributes = new { @class = "form-control" }, Style = "width: 288px; Height:65px;" })
-                @Html.ValidationMessageFor(model => model.atividadeDiaCla.Descricao, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.atividadeDiaCla.Dt_Cadastro, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.atividadeDiaCla.Dt_Cadastro, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
-                @Html.ValidationMessageFor(model => model.atividadeDiaCla.Dt_Cadastro, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <table class="webGrid" id="tblAtividades">
-            <tr>
-                <th>IdEtapa</th>
-                <th>Descrição</th>
-                <th>Ação</th>
-            </tr>
-            @using (Html.BeginCollectionItem("AtiviModelView"))
-            {
-                foreach (var item in Model.atividadeCla)
-                {
-                    <tr>
-                        <td>@item.IdEtapa</td>
-                        <td>@item.DsEtapa</td>
-                        <td>@Html.CheckBox("DsSelecionado", (bool)Convert.ToBoolean(@item.DsSelecionado))</td>
-                    </tr>
-                }
-            }
-
-        </table>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Salvar" class="btn btn-default" />
-            </div>
-        </div>
-
     </div>
-}
 
-@*@foreach (var item in Model.atividadeCla)
-    {
+    <div class="form-group">
+        @Html.LabelFor(model => model.atividadeDiaCla.NomeProcesso, "Processo", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.atividadeDiaCla.NomeProcesso, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.atividadeDiaCla.NomeProcesso, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.atividadeDiaCla.Descricao, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.atividadeDiaCla.Descricao, new { @class = "form-control", @maxLength = 50 })
+            @Html.ValidationMessageFor(model => model.atividadeDiaCla.Descricao, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.atividadeDiaCla.Dt_Cadastro, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.atividadeDiaCla.Dt_Cadastro, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.atividadeDiaCla.Dt_Cadastro, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <table class="webGrid" id="tblAtividades">
         <tr>
-            <td>@item.IdEtapa</td>
-            <td>@Html.TextBoxFor(model => item.IdEtapa)</td>
-            <td>@item.DsEtapa</td>
-            <td>@Html.CheckBox("DsSelecionado", (bool)Convert.ToBoolean(@item.DsSelecionado))</td>
+            <th>IdEtapa</th>
+            <th>Descrição</th>
+            <th>Complemento</th>
+            <th>Ação</th>
         </tr>
-    }*@
+
+        @for (var a = 0; a < Model.atividadeCla.Count(); a++)
+        {
+            @Html.HiddenFor(model => Model.atividadeCla[a].IdAtividade)
+            @Html.HiddenFor(model => Model.atividadeCla[a].IdAtividadeDiaria)
+            @Html.HiddenFor(model => Model.atividadeCla[a].IdEtapa)
+            @Html.HiddenFor(model => Model.atividadeCla[a].DsEtapa)
+
+            <tr>
+                <td>@Model.atividadeCla[a].IdEtapa</td>
+                <td>@Model.atividadeCla[a].DsEtapa</td>
+                <td>@Model.atividadeCla[a].Complemento</td>
+                <td>@Html.CheckBoxFor(it => @Model.atividadeCla[a].IsActive)</td>
+            </tr>
+        }
+
+    </table>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Salvar" class="btn btn-default" />
+        </div>
+    </div>
+
+</div>
+}
 
 <div>
     @Html.ActionLink("Voltar a Atividade Diária", "Index")

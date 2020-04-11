@@ -1,0 +1,46 @@
+﻿@model IEnumerable<WebMvcSgq.Models.tbl_NaoConformidade>
+
+@{
+    ViewBag.Title = "Registro de Não Conformidade";
+    var grid = new WebGrid(source: Model, canPage: true, defaultSort: "IdNaoConformidade", rowsPerPage: 5, canSort: true);
+}
+
+<br />
+<p>
+    @Html.ActionLink("Gerar Nao Conformidade", "NovaNaoConformidade", new { IdNaoConformidade = 0 }, new { @class = "btn btn-primary" })
+</p>
+@grid.GetHtml(
+tableStyle: "webGrid",
+htmlAttributes: new { id = "checkableGrid" },
+fillEmptyRows: true,
+alternatingRowStyle: "alt",
+headerStyle: "grid-header",
+footerStyle: "foot-grid",
+mode: WebGridPagerModes.All,
+firstText: "<< Primeiro",
+previousText: " < Anterior",
+nextText: "Próximo >",
+lastText: "Último >>",
+caption: "Detalhes de Não Conformidade",
+emptyRowCellValue: null,
+columns: new[]{
+    grid.Column("IdNaoConformidade",header:"ID",style:"text-align-left"),
+    grid.Column("tbl_Processo.Nome",header:"Processo"),
+    grid.Column("tbl_Atividade_Diaria.Descricao",header:"Descricao"),
+    grid.Column("Dt_Cadastro",header:"Data Cadastro"),
+    grid.Column("Dt_Alteracao",header:"Data Alteracao"),
+    grid.Column("",header: "Ações",format: @<text>@Html.ActionLink("Editar", "EditarNaoConformidade", new {IdNaoConformidade = item.IdNaoConformidade})
+    |
+    @Html.ActionLink("Deletar", "DeletarNaoConformidade", new {IdNaoConformidade = item.IdNaoConformidade})
+    |
+    @Html.ActionLink("Detalhes", "Detalhes", new {IdNaoConformidade = item.IdNaoConformidade})
+    </text>
+)
+}
+)
+
+@using (Html.BeginForm("Index", "Processo", FormMethod.Get))
+{
+    @Html.ActionLink("Voltar aos Processo", "Index", "Processo")
+}
+

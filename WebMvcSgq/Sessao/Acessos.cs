@@ -31,6 +31,12 @@ namespace WebMvcSgq.Sessao
         public string ATIVIDADEDIARIA_DELETARATIVIDADEDIARIA = "/ATIVIDADEDIARIA/DELETARATIVIDADEDIARIA";
         public string ATIVIDADEDIARIA_EDITARATIVIDADEDIARIA = "/ATIVIDADEDIARIA/EDITARATIVIDADEDIARIA";
         public string ATIVIDADEDIARIA_DETALHES = "/ATIVIDADEDIARIA/DETALHES";
+        public string NAOCONFORMIDADE = "/NAOCONFORMIDADE";
+        public string NAOCONFORMIDADE_INDEX = "/NAOCONFORMIDADE/INDEX";
+        public string RELATORIO = "/RELATORIO";
+        public string RELATORIO_INDEX = "/RELATORIO/INDEX";
+        public string RELATORIONAOCONFORMIDADE = "/RELATORIONAOCONFORMIDADE";
+        public string RELATORIONAOCONFORMIDADE_INDEX = "/RELATORIONAOCONFORMIDADE/INDEX";
 
         public bool ConsultaAcesso(string caminhoUrl)
         {
@@ -45,7 +51,7 @@ namespace WebMvcSgq.Sessao
 
             if (lista.Where(p => p.DsAcesso.Equals(caminhoUrl.ToUpper())).Count() > 0)
                 validar = true;
-            
+
             return validar;
         }
 
@@ -69,6 +75,12 @@ namespace WebMvcSgq.Sessao
             lista.Add(ATIVIDADEDIARIA_DELETARATIVIDADEDIARIA);
             lista.Add(ATIVIDADEDIARIA_EDITARATIVIDADEDIARIA);
             lista.Add(ATIVIDADEDIARIA_DETALHES);
+            lista.Add(NAOCONFORMIDADE);
+            lista.Add(NAOCONFORMIDADE_INDEX);
+            lista.Add(RELATORIO);
+            lista.Add(RELATORIO_INDEX);
+            lista.Add(RELATORIONAOCONFORMIDADE);
+            lista.Add(RELATORIONAOCONFORMIDADE_INDEX);
 
             return lista;
         }

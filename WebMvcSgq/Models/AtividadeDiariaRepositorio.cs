@@ -25,26 +25,26 @@ namespace WebMvcSgq.Models
                 repAtiv = new AtividadeDiariaRepositorio();
                 repProcesso = new ProcessoRepositorio();
 
-                ativDiaria = db.Tbl_Atividade_Diaria.Where(p => p.IdAtividade == ativDiaria.IdAtividade).FirstOrDefault();
+                ativDiaria = db.Tbl_Atividade_Diaria.Where(p => p.IdAtividadeDiaria == ativDiaria.IdAtividadeDiaria).FirstOrDefault();
 
                 tbl_Processo processo = repProcesso.GetProcessoPorID(ativDiaria.IdProcesso.Value);
 
                 foreach (var item in processo.tbl_etapa)
                 {
                     tbl_atividades atv = null;
-                    atv = ativDiaria.tbl_atividades.Where(p => p.IdAtividadeDiaria == ativDiaria.IdAtividade && p.IdEtapa == item.IdEtapa).FirstOrDefault();
+                    atv = ativDiaria.tbl_atividades.Where(p => p.IdAtividadeDiaria == ativDiaria.IdAtividadeDiaria && p.IdEtapa == item.IdEtapa).FirstOrDefault();
 
                     if (atv == null)
                     {
                         atv = new tbl_atividades();
                         atv.IdEtapa = item.IdEtapa;
-                        atv.IdAtividadeDiaria = ativDiaria.IdAtividade;
+                        atv.IdAtividadeDiaria = ativDiaria.IdAtividadeDiaria;
                         atv.DsSelecionado = 0;
                         ativDiaria.tbl_atividades.Add(atv);
                     }
                     else
                     {
-                        ativDiaria.tbl_atividades.Where(p => p.IdAtividadeDiaria == ativDiaria.IdAtividade && p.IdEtapa == item.IdEtapa).FirstOrDefault().DsSelecionado = 1;
+                        ativDiaria.tbl_atividades.Where(p => p.IdAtividadeDiaria == ativDiaria.IdAtividadeDiaria && p.IdEtapa == item.IdEtapa).FirstOrDefault().DsSelecionado = 1;
                     }
                 }
 
@@ -64,26 +64,26 @@ namespace WebMvcSgq.Models
         {
             try
             {
-                var novaAtividade = db.Tbl_Atividade_Diaria.Where(x => x.IdAtividade == ativDiaria.IdAtividade).FirstOrDefault();
+                var novaAtividade = db.Tbl_Atividade_Diaria.Where(x => x.IdAtividadeDiaria == ativDiaria.IdAtividadeDiaria).FirstOrDefault();
                 novaAtividade.Descricao = ativDiaria.Descricao;
                 novaAtividade.Dt_Alteracao = DateTime.Now;
 
                 foreach (var item in listaAtividade)
                 {
                     tbl_atividades atv = null;
-                    atv = novaAtividade.tbl_atividades.Where(p => p.IdAtividadeDiaria == novaAtividade.IdAtividade && p.IdEtapa == item.IdEtapa).FirstOrDefault();
+                    atv = novaAtividade.tbl_atividades.Where(p => p.IdAtividadeDiaria == novaAtividade.IdAtividadeDiaria && p.IdEtapa == item.IdEtapa).FirstOrDefault();
 
                     if (atv == null)
                     {
                         atv = new tbl_atividades();
                         atv.IdEtapa = item.IdEtapa;
-                        atv.IdAtividadeDiaria = novaAtividade.IdAtividade;
+                        atv.IdAtividadeDiaria = novaAtividade.IdAtividadeDiaria;
                         atv.DsSelecionado = 0;
                         novaAtividade.tbl_atividades.Add(atv);
                     }
                     else
                     {
-                        novaAtividade.tbl_atividades.Where(p => p.IdAtividadeDiaria == novaAtividade.IdAtividade && p.IdEtapa == item.IdEtapa).FirstOrDefault().DsSelecionado = 1;
+                        novaAtividade.tbl_atividades.Where(p => p.IdAtividadeDiaria == novaAtividade.IdAtividadeDiaria && p.IdEtapa == item.IdEtapa).FirstOrDefault().DsSelecionado = 1;
                     }
                 }
 
@@ -105,7 +105,7 @@ namespace WebMvcSgq.Models
         {
             try
             {
-                Tbl_Atividade_Diaria _atividadeDiaria = db.Tbl_Atividade_Diaria.SingleOrDefault(x => x.IdAtividade == idAtivDiaria);
+                Tbl_Atividade_Diaria _atividadeDiaria = db.Tbl_Atividade_Diaria.SingleOrDefault(x => x.IdAtividadeDiaria == idAtivDiaria);
                 db.Tbl_Atividade_Diaria.Remove(_atividadeDiaria);
                 db.SaveChanges();
                 _atividadeDiaria = null;
@@ -126,7 +126,7 @@ namespace WebMvcSgq.Models
             try
             {
                 Tbl_Atividade_Diaria obj = new Tbl_Atividade_Diaria();
-                obj = db.Tbl_Atividade_Diaria.Include("tbl_Processo").Include("tbl_Atividades").SingleOrDefault(s => s.IdAtividade == idAtivDiaria);
+                obj = db.Tbl_Atividade_Diaria.Include("tbl_Processo").Include("tbl_Atividades").SingleOrDefault(s => s.IdAtividadeDiaria == idAtivDiaria);
                 return obj;
             }
             catch (Exception ex)
@@ -163,7 +163,7 @@ namespace WebMvcSgq.Models
         {
             try
             {
-                return db.Tbl_Atividade_Diaria.Include("tbl_Processo").Include("tbl_Atividades").SingleOrDefault(x => x.IdAtividade == idAtivDiaria);
+                return db.Tbl_Atividade_Diaria.Include("tbl_Processo").Include("tbl_Atividades").SingleOrDefault(x => x.IdAtividadeDiaria == idAtivDiaria);
             }
             catch (Exception ex)
             {
@@ -185,13 +185,13 @@ namespace WebMvcSgq.Models
             try
             {
 
-                Tbl_Atividade_Diaria tbAd = db.Tbl_Atividade_Diaria.Include("tbl_Processo").Include("tbl_Atividades").SingleOrDefault(x => x.IdAtividade == idAtivDiaria);
+                Tbl_Atividade_Diaria tbAd = db.Tbl_Atividade_Diaria.Include("tbl_Processo").Include("tbl_Atividades").SingleOrDefault(x => x.IdAtividadeDiaria == idAtivDiaria);
                 AtividadeDiariaClass adc = new AtividadeDiariaClass();
                 adc.Descricao = tbAd.Descricao;
                 adc.NomeProcesso = tbAd.tbl_Processo.Nome;
                 adc.Dt_Alteracao = tbAd.Dt_Alteracao;
                 adc.Dt_Cadastro = tbAd.Dt_Cadastro;
-                adc.IdAtividade = tbAd.IdAtividade;
+                adc.IdAtividade = tbAd.IdAtividadeDiaria;
                 adc.IdProcesso = tbAd.IdProcesso.Value;
 
                 List<AtividadeClass> listac  = new List<AtividadeClass>();
@@ -203,6 +203,7 @@ namespace WebMvcSgq.Models
                     acv.IdAtividadeDiaria = ativid.IdAtividadeDiaria.Value;
                     acv.IdEtapa = ativid.IdEtapa.Value;
                     acv.DsEtapa = ativid.tbl_etapa.Descricao;
+                    acv.Complemento = ativid.tbl_etapa.Complemento;
                     acv.DsSelecionado = ativid.DsSelecionado.Value;
                     listac.Add(acv);
                 }
@@ -229,26 +230,26 @@ namespace WebMvcSgq.Models
         {
             try
             {
-                Tbl_Atividade_Diaria ad = db.Tbl_Atividade_Diaria.Where(x => x.IdAtividade == amv.atividadeDiaCla.IdAtividade).FirstOrDefault();
+                Tbl_Atividade_Diaria ad = db.Tbl_Atividade_Diaria.Where(x => x.IdAtividadeDiaria == amv.atividadeDiaCla.IdAtividade).FirstOrDefault();
                 ad.Descricao = amv.atividadeDiaCla.Descricao;
-                ad.Dt_Alteracao = amv.atividadeDiaCla.Dt_Alteracao;
+                ad.Dt_Alteracao = DateTime.Now;
 
                 foreach (var item in amv.atividadeCla)
                 {
                     tbl_atividades atv = null;
-                    atv = ad.tbl_atividades.Where(p => p.IdAtividadeDiaria == ad.IdAtividade && p.IdEtapa == item.IdEtapa).FirstOrDefault();
+                    atv = ad.tbl_atividades.Where(p => p.IdAtividadeDiaria == ad.IdAtividadeDiaria && p.IdEtapa == item.IdEtapa).FirstOrDefault();
 
                     if (atv == null)
                     {
                         atv = new tbl_atividades();
                         atv.IdEtapa = item.IdEtapa;
-                        atv.IdAtividadeDiaria = ad.IdAtividade;
+                        atv.IdAtividadeDiaria = ad.IdAtividadeDiaria;
                         atv.DsSelecionado = item.DsSelecionado;
                         ad.tbl_atividades.Add(atv);
                     }
                     else
                     {
-                        ad.tbl_atividades.Where(p => p.IdAtividadeDiaria == ad.IdAtividade && p.IdEtapa == item.IdEtapa).FirstOrDefault().DsSelecionado = item.DsSelecionado;
+                        ad.tbl_atividades.Where(p => p.IdAtividadeDiaria == ad.IdAtividadeDiaria && p.IdEtapa == item.IdEtapa).FirstOrDefault().DsSelecionado = item.DsSelecionado;
                     }
                 }
 

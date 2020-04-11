@@ -2,12 +2,12 @@
 
 @{
     ViewBag.Title = "Atividade Diária";
-    var grid = new WebGrid(source: Model, canPage: true, defaultSort: "IdAtividade", rowsPerPage: 5, canSort: true);
+    var grid = new WebGrid(source: Model, canPage: true, defaultSort: "IdAtividadeDiaria", rowsPerPage: 5, canSort: true);
 }
 
 <br />
 <p>
-    @Html.ActionLink("Nova Atividade", "AdicionaAtividadeDiaria", new { IdAtividade = 0 }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Nova Atividade", "AdicionaAtividadeDiaria", new { IdAtividadeDiaria = 0 }, new { @class = "btn btn-primary" })
 </p>
 @grid.GetHtml(
 tableStyle: "webGrid",
@@ -24,18 +24,18 @@ lastText: "Último >>",
 caption: "Detalhes da Atividade",
 emptyRowCellValue: null,
 columns: new[]{
-    grid.Column("IdAtividade",header:"ID",style:"text-align-left"),
+    grid.Column("IdAtividadeDiaria",header:"ID",style:"text-align-left"),
     grid.Column("tbl_Processo.Nome",header:"Processo"),
     grid.Column("Descricao",header:"Descricao"),
     grid.Column("Dt_Cadastro",header:"Data Cadastro"),
     grid.Column("Dt_Alteracao",header:"Data Alteracao"),
-    grid.Column("",header: "Ações",format: @<text>@Html.ActionLink("Editar", "EditarAtividadeDiaria", new {IdAtividade = item.IdAtividade, IdProcesso = item.IdProcesso })
+    grid.Column("",header: "Ações",format: @<text>@Html.ActionLink("Editar", "EditarAtividadeDiaria", new {IdAtividadeDiaria = item.IdAtividadeDiaria, IdProcesso = item.IdProcesso })
     |
-    @Html.ActionLink("Deletar", "DeletarAtividadeDiaria", new {idAtividade = item.IdAtividade })
+    @Html.ActionLink("Deletar", "DeletarAtividadeDiaria", new {IdAtividadeDiaria = item.IdAtividadeDiaria })
     |
-    @Html.ActionLink("Detalhes", "Detalhes", new { IdAtividade = item.IdAtividade })
+    @Html.ActionLink("Detalhes", "Detalhes", new { IdAtividadeDiaria = item.IdAtividadeDiaria })
     |
-    @Html.ActionLink("Registrar Nao Conformidade", "NaoConformidade", "NaoConformidade")
+    @Html.ActionLink("Registrar Nao Conformidade", "NovaNaoConformidade", "NaoConformidade")
     </text>
 )
 }

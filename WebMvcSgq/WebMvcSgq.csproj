@@ -135,9 +135,11 @@
     <Compile Include="Controllers\AcessoController.cs" />
     <Compile Include="Controllers\AtividadeDiariaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\IncidenteController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\NaoConformidadeController.cs" />
     <Compile Include="Controllers\ProcessoController.cs" />
+    <Compile Include="Controllers\RelatorioController.cs" />
+    <Compile Include="Controllers\RelatorioNaoConformidadeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -145,6 +147,8 @@
     <Compile Include="Models\AtividadeDiariaRepositorio.cs" />
     <Compile Include="Models\AtividadeRepositorio.cs" />
     <Compile Include="Models\Classe\AtividadeClass.cs" />
+    <Compile Include="Models\Classe\RelatorioClass.cs" />
+    <Compile Include="Models\Classe\RelatNaoConformidadeClass.cs" />
     <Compile Include="Models\EtapaRepositorio.cs" />
     <Compile Include="Models\FuncionarioRepositorio.cs" />
     <Compile Include="Models\Interface\IAcessoRepositorio.cs" />
@@ -152,9 +156,9 @@
     <Compile Include="Models\Interface\IAtividadeRepositorio.cs" />
     <Compile Include="Models\Interface\IEtapaRepositorio.cs" />
     <Compile Include="Models\Interface\IFuncionarioRepositorio.cs" />
-    <Compile Include="Models\Interface\IIncidenteRepositorio.cs" />
-    <Compile Include="Models\IncidenteRepositorio.cs" />
+    <Compile Include="Models\Interface\INaoConformidadeRepositorio.cs" />
     <Compile Include="Models\Interface\IProcessoRepositorio.cs" />
+    <Compile Include="Models\NaoConformidadeRepositorio.cs" />
     <Compile Include="Models\ProcessoRepositorio.cs" />
     <Compile Include="Models\SGQModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -187,6 +191,9 @@
       <DependentUpon>SGQModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbl_Funcionario.cs">
+      <DependentUpon>SGQModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tbl_NaoConformidade.cs">
       <DependentUpon>SGQModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tbl_Processo.cs">
@@ -238,6 +245,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Views\RelatorioNaoConformidade\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -251,11 +259,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Incidente\Index.cshtml" />
-    <Content Include="Views\Incidente\AdicionarIncidente.cshtml" />
-    <Content Include="Views\Incidente\EditarIncidente.cshtml" />
-    <Content Include="Views\Incidente\DeletarIncidente.cshtml" />
-    <Content Include="Views\Incidente\Detalhes.cshtml" />
     <Content Include="Views\Processo\Index.cshtml" />
     <Content Include="Views\Processo\AdicionarProcesso.cshtml" />
     <Content Include="Views\Processo\EditarProcesso.cshtml" />
@@ -270,6 +273,12 @@
     <Content Include="Views\AtividadeDiaria\DeletarAtividadeDiaria.cshtml" />
     <Content Include="Views\AtividadeDiaria\Detalhes.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Collection.cshtml" />
+    <Content Include="Views\NaoConformidade\Index.cshtml" />
+    <Content Include="Views\NaoConformidade\NovaNaoConformidade.cshtml" />
+    <Content Include="Views\NaoConformidade\Detalhes.cshtml" />
+    <Content Include="Views\NaoConformidade\DeletarNaoConformidade.cshtml" />
+    <Content Include="Views\NaoConformidade\EditarNaoConformidade.cshtml" />
+    <Content Include="Views\Relatorio\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

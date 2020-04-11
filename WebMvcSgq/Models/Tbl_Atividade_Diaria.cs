@@ -18,9 +18,10 @@ namespace WebMvcSgq.Models
         public Tbl_Atividade_Diaria()
         {
             this.tbl_atividades = new HashSet<tbl_atividades>();
+            this.tbl_NaoConformidade = new HashSet<tbl_NaoConformidade>();
         }
     
-        public long IdAtividade { get; set; }
+        public long IdAtividadeDiaria { get; set; }
         public Nullable<long> IdProcesso { get; set; }
         public string Descricao { get; set; }
         public Nullable<System.DateTime> Dt_Cadastro { get; set; }
@@ -29,5 +30,7 @@ namespace WebMvcSgq.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbl_atividades> tbl_atividades { get; set; }
         public virtual tbl_Processo tbl_Processo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tbl_NaoConformidade> tbl_NaoConformidade { get; set; }
     }
 }

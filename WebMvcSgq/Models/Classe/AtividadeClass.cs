@@ -36,6 +36,14 @@ namespace WebMvcSgq.Models.Classe
         public long IdEtapa { get; set; }
 
         public string DsEtapa { get; set; }
+
+        public string Complemento { get; set; }
         public int DsSelecionado { get; set; }
+
+        public bool IsActive
+        {
+            get => DsSelecionado > 0;
+            set => DsSelecionado = value == true ? 1 : 0;
+        }
     }
 }

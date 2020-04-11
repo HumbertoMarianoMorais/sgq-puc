@@ -29,6 +29,14 @@
                     <li>@Html.ActionLink("Processo", "Index", "Processo")</li>
                     <li>@Html.ActionLink("Sobre", "About", "Home")</li>
                     <li>@Html.ActionLink("Contato", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Nao Conformidade", "Index", "NaoConformidade")</li>
+                    <li>
+                        <a>Relatório</a>
+                        <ul class="nav navbarSubMenu-nav">
+                            <li>@Html.ActionLink("Processos e Atividades", "Index", "Relatorio")</li>
+                            <li>@Html.ActionLink("Não-Conformidades", "Index", "RelatorioNaoConformidade")</li>
+                        </ul>
+                    </li>
                     @if (Session["Usuario"] != null)
                     {
                         <li>@Html.ActionLink("Sair", "Login")</li>

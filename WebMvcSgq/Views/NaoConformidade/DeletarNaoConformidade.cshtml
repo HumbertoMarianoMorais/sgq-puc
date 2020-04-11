@@ -1,0 +1,58 @@
+﻿@model WebMvcSgq.Models.tbl_NaoConformidade
+
+<h3>Você quer apagar essa Não Conformidade?</h3>
+<div>
+    <h4>Não Conformidade</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DsNaoConformidade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DsNaoConformidade)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dt_Cadastro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dt_Cadastro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dt_Alteracao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dt_Alteracao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tbl_Processo.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tbl_Processo.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tbl_Atividade_Diaria.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tbl_Atividade_Diaria.Descricao)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Apagar" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar", "Index")
+        </div>
+    }
+</div>

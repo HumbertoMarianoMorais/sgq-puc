@@ -12,14 +12,17 @@ namespace WebMvcSgq.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_atividades
+    public partial class tbl_NaoConformidade
     {
-        public long IdAtividade { get; set; }
+        public long IdNaoConformidade { get; set; }
+        public Nullable<long> IdProcesso { get; set; }
         public Nullable<long> IdAtividadeDiaria { get; set; }
-        public Nullable<long> IdEtapa { get; set; }
-        public Nullable<int> DsSelecionado { get; set; }
+        public string DsNaoConformidade { get; set; }
+        public bool Dstatus { get; set; }
+        public Nullable<System.DateTime> Dt_Cadastro { get; set; }
+        public Nullable<System.DateTime> Dt_Alteracao { get; set; }
     
-        public virtual tbl_etapa tbl_etapa { get; set; }
         public virtual Tbl_Atividade_Diaria Tbl_Atividade_Diaria { get; set; }
+        public virtual tbl_Processo tbl_Processo { get; set; }
     }
 }

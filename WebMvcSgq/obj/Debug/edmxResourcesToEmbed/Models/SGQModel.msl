@@ -11,17 +11,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Tbl_Atividade_Diaria">
-      <EntityTypeMapping TypeName="db_sgqModel.Tbl_Atividade_Diaria">
-        <MappingFragment StoreEntitySet="Tbl_Atividade_Diaria">
-          <ScalarProperty Name="Dt_Alteracao" ColumnName="Dt_Alteracao" />
-          <ScalarProperty Name="Dt_Cadastro" ColumnName="Dt_Cadastro" />
-          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
-          <ScalarProperty Name="IdProcesso" ColumnName="IdProcesso" />
-          <ScalarProperty Name="IdAtividade" ColumnName="IdAtividade" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="tbl_atividades">
       <EntityTypeMapping TypeName="db_sgqModel.tbl_atividades">
         <MappingFragment StoreEntitySet="tbl_atividades">
@@ -71,6 +60,30 @@
           <ScalarProperty Name="IdFuncaoAcesso" ColumnName="IdFuncaoAcesso" />
           <ScalarProperty Name="DsAcesso" ColumnName="DsAcesso" />
           <ScalarProperty Name="IdAcesso" ColumnName="IdAcesso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tbl_Atividade_Diaria">
+      <EntityTypeMapping TypeName="db_sgqModel.Tbl_Atividade_Diaria">
+        <MappingFragment StoreEntitySet="Tbl_Atividade_Diaria">
+          <ScalarProperty Name="Dt_Alteracao" ColumnName="Dt_Alteracao" />
+          <ScalarProperty Name="Dt_Cadastro" ColumnName="Dt_Cadastro" />
+          <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+          <ScalarProperty Name="IdProcesso" ColumnName="IdProcesso" />
+          <ScalarProperty Name="IdAtividadeDiaria" ColumnName="IdAtividadeDiaria" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbl_NaoConformidade">
+      <EntityTypeMapping TypeName="db_sgqModel.tbl_NaoConformidade">
+        <MappingFragment StoreEntitySet="tbl_NaoConformidade">
+          <ScalarProperty Name="Dt_Alteracao" ColumnName="Dt_Alteracao" />
+          <ScalarProperty Name="Dt_Cadastro" ColumnName="Dt_Cadastro" />
+          <ScalarProperty Name="Dstatus" ColumnName="Dstatus" />
+          <ScalarProperty Name="DsNaoConformidade" ColumnName="DsNaoConformidade" />
+          <ScalarProperty Name="IdAtividadeDiaria" ColumnName="IdAtividadeDiaria" />
+          <ScalarProperty Name="IdProcesso" ColumnName="IdProcesso" />
+          <ScalarProperty Name="IdNaoConformidade" ColumnName="IdNaoConformidade" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

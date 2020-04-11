@@ -81,11 +81,11 @@ namespace WebMvcSgq.Controllers
             return View(listaAtividade.ToList());
         }
 
-        public ActionResult AdicionaAtividadeDiaria(int IdAtividade)
+        public ActionResult AdicionaAtividadeDiaria(int IdAtividadeDiaria)
         {
             Tbl_Atividade_Diaria ativDiaria = new Tbl_Atividade_Diaria();
 
-            SessaoAtividadeDiaria.SessaoAtivDiariaId = IdAtividade;
+            SessaoAtividadeDiaria.SessaoAtivDiariaId = IdAtividadeDiaria;
 
             GetAtividades();
 
@@ -114,45 +114,29 @@ namespace WebMvcSgq.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult EditarAtividadeDiaria(int IdAtividade = 0,int IdProcesso = 0)
+        public ActionResult EditarAtividadeDiaria(int IdAtividadeDiaria = 0,int IdProcesso = 0)
         {
             AtiviModelView amv = new AtiviModelView();
-            amv = rep.GetAtividadeDiariaPorID(IdAtividade);
+            amv = rep.GetAtividadeDiariaPorID(IdAtividadeDiaria);
 
             SessaoProcesso.SessaoProcessoId = IdProcesso;
-            SessaoAtividadeDiaria.SessaoAtivDiariaId = IdAtividade;
+            SessaoAtividadeDiaria.SessaoAtivDiariaId = IdAtividadeDiaria;
 
             return View(amv);
 
-            //Tbl_Atividade_Diaria ativDiaria = rep.GetAtividadePorID(IdAtividade);
-
-            //SessaoProcesso.SessaoProcessoId = IdProcesso;
-            //SessaoAtividadeDiaria.SessaoAtivDiariaId = IdAtividade;
-
-            //GetAtividades();
-
-            //if (ativDiaria == null)
-            //    return HttpNotFound();
-
-            //return View(ativDiaria);
         }
 
         [HttpPost]
         public ActionResult EditarAtividadeDiaria(AtiviModelView amv)
         {
-
             rep.EditarAtividadeDiaria(amv);
             return RedirectToAction("Index");
 
-            //GetAtividades();
-
-            //rep.EditarAtividadeDiaria(ativDiaria, ViewBag.listAtividades);
-            //return RedirectToAction("Index");
         }
 
-        public ActionResult DeletarAtividadeDiaria(int IdAtividade = 0)
+        public ActionResult DeletarAtividadeDiaria(int IdAtividadeDiaria = 0)
         {
-            Tbl_Atividade_Diaria ativDiaria = rep.GetAtividadePorID(IdAtividade);
+            Tbl_Atividade_Diaria ativDiaria = rep.GetAtividadePorID(IdAtividadeDiaria);
 
             if (ativDiaria == null)
                 return HttpNotFound();
@@ -163,13 +147,13 @@ namespace WebMvcSgq.Controllers
         [HttpPost]
         public ActionResult DeletarAtividadeDiaria(Tbl_Atividade_Diaria ativDiaria)
         {
-            rep.DeletarAtividadeDiaria(ativDiaria.IdAtividade);
+            rep.DeletarAtividadeDiaria(ativDiaria.IdAtividadeDiaria);
             return RedirectToAction("Index");
         }
 
-        public ActionResult Detalhes(int IdAtividade = 0)
+        public ActionResult Detalhes(int IdAtividadeDiaria = 0)
         {
-            Tbl_Atividade_Diaria ativDiaria = rep.Detalhes(IdAtividade);
+            Tbl_Atividade_Diaria ativDiaria = rep.Detalhes(IdAtividadeDiaria);
             return View(ativDiaria);
         }
     }

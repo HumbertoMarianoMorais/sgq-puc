@@ -26,11 +26,12 @@ namespace WebMvcSgq.Models
         }
     
         public virtual DbSet<tbl_Processo> tbl_Processo { get; set; }
-        public virtual DbSet<Tbl_Atividade_Diaria> Tbl_Atividade_Diaria { get; set; }
         public virtual DbSet<tbl_atividades> tbl_atividades { get; set; }
         public virtual DbSet<tbl_etapa> tbl_etapa { get; set; }
         public virtual DbSet<tbl_funcao> tbl_funcao { get; set; }
         public virtual DbSet<tbl_Funcionario> tbl_Funcionario { get; set; }
         public virtual DbSet<tbl_Acessos> tbl_Acessos { get; set; }
+        public virtual DbSet<Tbl_Atividade_Diaria> Tbl_Atividade_Diaria { get; set; }
+        public virtual DbSet<tbl_NaoConformidade> tbl_NaoConformidade { get; set; }
     }
 }
