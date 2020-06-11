@@ -33,7 +33,7 @@
         }
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DsNaoConformidade, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DsNaoConformidade,"Descrição Não Conformidade ", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextAreaFor(model => model.DsNaoConformidade, new { @class = "form-control", @maxLength = 100 })
                 @Html.ValidationMessageFor(model => model.DsNaoConformidade, "", new { @class = "text-danger" })
