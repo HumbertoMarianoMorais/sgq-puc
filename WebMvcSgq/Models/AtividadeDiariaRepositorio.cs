@@ -194,8 +194,8 @@ namespace WebMvcSgq.Models
                 adc.IdAtividade = tbAd.IdAtividadeDiaria;
                 adc.IdProcesso = tbAd.IdProcesso.Value;
 
-                List<AtividadeClass> listac  = new List<AtividadeClass>();
-                
+                List<AtividadeClass> listac = new List<AtividadeClass>();
+
                 foreach (var ativid in tbAd.tbl_atividades.ToList())
                 {
                     AtividadeClass acv = new AtividadeClass();
@@ -211,7 +211,7 @@ namespace WebMvcSgq.Models
                 amv.atividadeDiaCla = adc;
                 amv.atividadeCla = listac;
 
-                
+
             }
             catch (Exception ex)
             {
@@ -234,22 +234,26 @@ namespace WebMvcSgq.Models
                 ad.Descricao = amv.atividadeDiaCla.Descricao;
                 ad.Dt_Alteracao = DateTime.Now;
 
-                foreach (var item in amv.atividadeCla)
-                {
-                    tbl_atividades atv = null;
-                    atv = ad.tbl_atividades.Where(p => p.IdAtividadeDiaria == ad.IdAtividadeDiaria && p.IdEtapa == item.IdEtapa).FirstOrDefault();
 
-                    if (atv == null)
+                if (amv.atividadeCla != null)
+                {
+                    foreach (var item in amv.atividadeCla)
                     {
-                        atv = new tbl_atividades();
-                        atv.IdEtapa = item.IdEtapa;
-                        atv.IdAtividadeDiaria = ad.IdAtividadeDiaria;
-                        atv.DsSelecionado = item.DsSelecionado;
-                        ad.tbl_atividades.Add(atv);
-                    }
-                    else
-                    {
-                        ad.tbl_atividades.Where(p => p.IdAtividadeDiaria == ad.IdAtividadeDiaria && p.IdEtapa == item.IdEtapa).FirstOrDefault().DsSelecionado = item.DsSelecionado;
+                        tbl_atividades atv = null;
+                        atv = ad.tbl_atividades.Where(p => p.IdAtividadeDiaria == ad.IdAtividadeDiaria && p.IdEtapa == item.IdEtapa).FirstOrDefault();
+
+                        if (atv == null)
+                        {
+                            atv = new tbl_atividades();
+                            atv.IdEtapa = item.IdEtapa;
+                            atv.IdAtividadeDiaria = ad.IdAtividadeDiaria;
+                            atv.DsSelecionado = item.DsSelecionado;
+                            ad.tbl_atividades.Add(atv);
+                        }
+                        else
+                        {
+                            ad.tbl_atividades.Where(p => p.IdAtividadeDiaria == ad.IdAtividadeDiaria && p.IdEtapa == item.IdEtapa).FirstOrDefault().DsSelecionado = item.DsSelecionado;
+                        }
                     }
                 }
 

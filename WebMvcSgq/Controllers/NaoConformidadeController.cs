@@ -57,8 +57,10 @@ namespace WebMvcSgq.Controllers
         {
             tbl_NaoConformidade naoConf = new tbl_NaoConformidade();
 
-            CarregarAtividade();
+            //ViewBag.IdProcesso = new SelectList(GetListProcesso(), "IdProcesso", "Nome");
+
             CarregarProcesso();
+            CarregarAtividade();
 
             return View(naoConf);
         }
@@ -68,6 +70,23 @@ namespace WebMvcSgq.Controllers
         {
             rep.AdicionaNaoConformidade(naoConformidade);
             return RedirectToAction("Index");
+        }
+
+        public List<tbl_Processo> GetListProcesso(long idProcesso)
+        {
+            IProcessoRepositorio rep = null;
+            rep = new ProcessoRepositorio();
+            List<tbl_Processo> listaProcesso = rep.GetProcessos().Where(p => p.IdProcesso == idProcesso).ToList();
+            return listaProcesso;
+
+        }
+
+        public List<Tbl_Atividade_Diaria> GetAtividadeDiaria(long idAtividade)
+        {
+            IAtividadeDiariaRepositorio repAtiviDiaRep2 = null;
+            repAtiviDiaRep2 = new AtividadeDiariaRepositorio();
+            List<Tbl_Atividade_Diaria> listaAtividadeDi = repAtiviDiaRep2.GetAtividadeDiaria().Where(p => p.IdAtividadeDiaria == idAtividade).ToList();
+            return listaAtividadeDi;
         }
 
         public ActionResult CarregarProcesso()
@@ -107,6 +126,9 @@ namespace WebMvcSgq.Controllers
 
             tbl_NaoConformidade naoConf = new tbl_NaoConformidade();
             naoConf = rep.GetNaoConformidadePorID(IdNaoConformidade);
+
+            ViewBag.IdProcesso = new SelectList(GetListProcesso(naoConf.IdProcesso.Value), "IdProcesso", "Nome");
+            ViewBag.IdAtividadeDiaria = new SelectList(GetAtividadeDiaria(naoConf.IdAtividadeDiaria.Value), "IdAtividadeDiaria", "Descricao"); 
 
             return View(naoConf);
 

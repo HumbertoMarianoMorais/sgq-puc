@@ -18,19 +18,31 @@
         {
             @Html.AntiForgeryToken()
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.IdAtividadeDiaria, "AtividadeDiaria", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("IdAtividadeDiaria", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.IdAtividadeDiaria, "", new { @class = "text-danger" })
+
+            @*if (ViewBag.IdProcesso != null)
+            {
+                <div class="form-group">
+                    @Html.LabelFor(model => model.IdProcesso, "Processo", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(m => m.IdProcesso, ViewBag.IdProcesso as SelectList," -- Select Processo -- ", new {@class = "form-control" })
+                    </div>
                 </div>
-            </div>
+            }*@
+
 
             <div class="form-group">
                 @Html.LabelFor(model => model.IdProcesso, "Processo", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.DropDownList("IdProcesso", null, htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.IdProcesso, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.IdAtividadeDiaria, "AtividadeDiaria", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("IdAtividadeDiaria", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.IdAtividadeDiaria, "", new { @class = "text-danger" })
                 </div>
             </div>
 

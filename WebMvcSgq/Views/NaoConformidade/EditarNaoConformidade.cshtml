@@ -10,14 +10,14 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.IdNaoConformidade)
 
-        @using (Html.BeginForm("NovaNaoConformidade", "NaoConformidade", FormMethod.Post))
+        @using (Html.BeginForm("EditarNaoConformidade", "NaoConformidade", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
 
             <div class="form-group">
                 @Html.LabelFor(model => model.IdProcesso, "IdProcesso", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("IdProcesso", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("IdProcesso", ViewBag.IdProcesso as SelectList, htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.IdProcesso, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -25,7 +25,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.IdAtividadeDiaria, "IdAtividadeDiaria", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("IdAtividadeDiaria", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownList("IdAtividadeDiaria", ViewBag.IdAtividadeDiaria as SelectList , htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.IdAtividadeDiaria, "", new { @class = "text-danger" })
                 </div>
             </div>
